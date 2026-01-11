@@ -1,6 +1,6 @@
 # Depth Edges Overlay (Depth Anything V2 + OpenCV)
 
-This project captures frames from a webcam (or a video file), estimates a monocular depth map using **Depth Anything V2**, extracts **depth discontinuity edges**, and overlays thick, coloured outlines onto the original video.
+This project captures frames from a webcam (or a video file), estimates a monocular depth map using [Depth Anything V2](https://github.com/DepthAnything/Depth-Anything-V2), extracts **depth discontinuity edges**, and overlays thick, coloured outlines onto the original video.
 
 The outline colour encodes **relative depth** (not metres). The edge colouring is stabilised by deriving colours from a **coarse, neighbour-pooled depth grid**, while edge detection can optionally use **CLAHE** for stronger boundaries in low-contrast scenes (especially outdoors).
 
@@ -11,6 +11,22 @@ The outline colour encodes **relative depth** (not metres). The edge colouring i
 - Colours edges by depth and overlays them on the RGB frame.
 - Uses a coarse grid for edge colouring (fast, reduces “background-coloured” thick outlines).
 - Optional CLAHE step improves edge detection without distorting edge colours.
+
+## Illustrations
+
+Below is an image from a frame of video, illustrating how this tool can add coloured outlines around distinct objects in the scene, with the outline colour giving an indication of how far from the viewer each object is. Depth estimation uses Depth Anything V2 (a pretrained monocular depth estimation model) which isn't perfect (note it gets the cables wrong) but generally works well and is relatively fast.
+
+Typically, the nearest objects will be highlighted in red, into oranges (further), and the farthest objects will be highlighed in blue, into green (nearer).
+
+![Illustration of how the final image may look](./images/final-effect.png)
+
+Below is a low-resolution representation of the sort of depth heatmap that is output from Depth Anything V2, using the colour sheme outlined above:
+
+![Depth map illustration](./images/depth-map.png)
+
+Finally, we have an illustration of the output from the edge-detection processing. This is performed on the heatmap to look for objects that are set-apart in distance from their surroundings.
+
+![Edge-detection illustration](./images/depth-edges.png)
 
 ## Requirements
 
