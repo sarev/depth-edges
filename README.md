@@ -73,8 +73,6 @@ You should see `True` and your GPU name.
 
 ## Running
 
-Assuming your main script is `depth_edges.py` (rename as needed):
-
 ### Real-world example (using webcam 0 as input):
 
 ```bash
